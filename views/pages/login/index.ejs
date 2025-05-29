@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../../partials/global.ejs') %>
+        <link rel="stylesheet" href="/assets/css/login.css">
+        <title>
+            <%= appName %>
+        </title>
+</head>
+
+<body>
+    <%- include('../../partials/header.ejs') %>
+        <%- include('../../partials/info.ejs') %>
+            <div class="container">
+                <form class="login-container" id="login-form">
+                    <div class="login-header"><i class="fa-brands fa-slack"></i><span>Login Diary</span></div>
+                    <div class="login-content">
+                        <input type="text" placeholder="Username" class="login-input" />
+                        <input type="password" placeholder="Password" class="login-input" />
+                    </div>
+                    <div class="login-footer">
+                        <button class="login-button" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+            <%- include('../../partials/global_script.ejs', { baseUrl }) %>
+                <script src="/scripts/login.js"></script>
+</body>
+
+</html>

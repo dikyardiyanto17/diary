@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../../partials/global.ejs') %>
+        <link rel="stylesheet" href="/assets/css/signup.css">
+        <title>
+            <%= appName %>
+        </title>
+</head>
+
+<body>
+    <%- include('../../partials/header.ejs') %>
+        <%- include('../../partials/info.ejs') %>
+            <div class="container">
+                <form class="signup-container" id="signup-form">
+                    <div class="signup-header"><i class="fa-brands fa-slack"></i><span>Sign Up Diary</span></div>
+                    <div class="signup-content">
+                        <input type="text" placeholder="Username" class="signup-input" />
+                        <input type="text" placeholder="Nickname" class="signup-input" />
+                        <input type="password" placeholder="Password" class="signup-input" />
+                    </div>
+                    <div class="signup-footer">
+                        <button class="signup-button" type="submit">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+            <%- include('../../partials/global_script.ejs', { baseUrl }) %>
+                <script src="/scripts/signup.js"></script>
+</body>
+
+</html>

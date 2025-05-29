@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../../partials/global.ejs') %>
+        <link rel="stylesheet" href="/assets/css/home.css">
+        <title>
+            <%= appName %>
+        </title>
+</head>
+
+<body>
+    <%- include('../../partials/header.ejs') %>
+    <%- include('../../partials/info.ejs') %>
+        <div class="container">
+            <section class="public-diaries">
+                <div class="home-header">
+                    <h1>- Public Diaries -</h1>
+                </div>
+                <div class="series-container">
+                    <% for (let i=0; i < 30; i++){ %>
+                        <div class="card-container">
+                            <div class="series-title-container"><i class="fa fa-user fa-xs"></i><span>Users</span></div>
+                            <div class="series-card">
+                                <div class="series-title">
+                                    <i class="fa fa-book fa-xs"></i><span>WHY</span>
+                                </div>
+                                <div class="series-info">
+                                    <span><i class="fa fa-heart fa-xs"></i>2 Likes</span>
+                                    <br>
+                                    <span><i class="fa fa-comment fa-xs"></i>2 Comments</span>
+                                    <br>
+                                    <span><i class="fa fa-eye fa-xs"></i>2 View</span>
+                                </div>
+                                <div class="series-description">
+
+                                    <span><i class="fa fa-note-sticky"></i>WHYWHYWHYWHY WHYWHYWHYWHY</span>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </section>
+        </div>
+        <%- include('../../partials/global_script.ejs', { baseUrl }) %>
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+.container {
+    width: 100vw;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+
+.home-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.series-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.card-container {
+    width: 250px;
+    padding: 10px;
+    height: 200px;
+    position: relative;
+    margin-bottom: 30px;
+    perspective: 800px;
+    cursor: pointer;
+}
+
+
+.series-card>div {
+    text-align: center;
+}
+
+i {
+    margin-right: 3px;
+}
+
+.series-title {
+    height: 50px;
+    width: 100%;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.series-info {
+    height: 50px;
+    width: 100%;
+    font-size: 12px;
+}
+
+.series-description {
+    height: 60px;
+    width: 100%;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.dark-mode .series {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+    padding: 20px;
+}
+
+
+.dark-mode .series-card {
+    width: 100%;
+    height: 100%;
+    background-color: #1f1f1f89;
+    border-radius: 10px;
+    color: #f0f0f0;
+    position: relative;
+    box-shadow: 0 4px 12px rgb(255, 255, 255);
+    padding: 20px 10px 10px 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.dark-mode .card-container:hover .series-card {
+    transform: translateY(-10px) rotateX(6deg) rotateY(3deg);
+    box-shadow: 0 12px 20px rgba(255, 255, 255, 0.3);
+    z-index: 1;
+}
+
+.dark-mode .card-container:hover .series-title-container {
+    transform: translateX(-50%) translateY(-10px) rotateX(6deg) rotateY(3deg);
+    box-shadow: 0 6px 14px rgba(255, 255, 255, 0.3);
+    background-color: #ffffff;
+    color: black;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    z-index: 2;
+}
+
+.dark-mode .card-container:hover .series-title-container span,
+.dark-mode .card-container:hover .series-card span {
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffffaf;
+    transition: text-shadow 0.3s ease;
+}
+
+
+.dark-mode .series-title-container {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1F1F1F;
+    width: 150px;
+    padding: 6px 0;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 5px;
+    backdrop-filter: blur(3px);
+    border: 1px solid #1F1F1F;
+    box-shadow: 0 -2px 12px rgb(255, 255, 255);
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+
+/* Light Mode */
+
+.light-mode .series {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #333333;
+    padding: 20px;
+    background-color: #fafafa81;
+    color: #222;
+}
+
+.light-mode .series-card {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    color: #222;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px 10px 10px 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.light-mode .card-container:hover .series-card {
+    transform: translateY(-10px) rotateX(6deg) rotateY(3deg);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+}
+
+.light-mode .card-container:hover .series-title-container {
+    transform: translateX(-50%) translateY(-10px) rotateX(6deg) rotateY(3deg);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    background-color: #000000;
+    color: #ffffff;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    z-index: 2;
+}
+
+.light-mode .card-container:hover .series-title-container span,
+.light-mode .card-container:hover .series-card span {
+    text-shadow: 0 0 5px #666666, 0 0 10px #aaaaaa;
+    transition: text-shadow 0.3s ease;
+}
+
+.light-mode .series-title-container {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f0f0f0;
+    width: 150px;
+    padding: 6px 0;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 5px;
+    backdrop-filter: blur(3px);
+    border: 1px solid #cccccc;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+}

@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="/assets/css/header.css">
+
+<nav class="navbar">
+  <a href="/" class="brand">
+    <%= appName %>
+  </a>
+  <div class="right">
+    <label class="theme-switch" title="Toggle Theme">
+      <input type="checkbox" id="theme-toggle-checkbox" />
+      <span class="slider">
+        <i class="fas fa-sun sun-icon"></i>
+        <i class="fas fa-moon moon-icon"></i>
+      </span>
+    </label>
+
+    <% if (user) { %>
+      <a href="/series/<%= user.id %>" class="avatar">
+        <%= user.initial %>
+      </a>
+      <a href="/series/<%= user.id %>" class="greeting">Hello, <%= user.petname || user.username %>
+      </a>
+      <form action="/api/auth/logout" method="POST" style="display:inline;">
+        <button type="submit" class="btn">Logout</button>
+      </form>
+      <% } else { %>
+        <a href="/login" class="btn">Login</a>
+        <a href="/signup" class="btn">Sign Up</a>
+        <% } %>
+  </div>
+</nav>
+
+
+<script>
+  const applyTheme = (theme) => {
+    if (theme === "dark") {
+      document.body.classList.add("dark-mode");
+      document.body.classList.remove("light-mode");
+      document.getElementById("theme-toggle-checkbox").checked = true;
+    } else {
+      document.body.classList.add("light-mode");
+      document.body.classList.remove("dark-mode");
+      document.getElementById("theme-toggle-checkbox").checked = false;
+    }
+  };
+
+  const savedTheme = localStorage.getItem("theme") || "light";
+  applyTheme(savedTheme);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const checkbox = document.getElementById("theme-toggle-checkbox");
+
+    checkbox.addEventListener("change", () => {
+      const nextTheme = checkbox.checked ? "dark" : "light";
+      localStorage.setItem("theme", nextTheme);
+      applyTheme(nextTheme);
+    });
+  });
+</script>

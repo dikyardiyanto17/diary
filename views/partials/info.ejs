@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/assets/css/info.css">
+<div class="info-container" id="info-container">
+    <i id="info-icon" class="fa-solid fa-check fa-beat-fade" style="color: #63E6BE;"></i><span id="info-message"></span>
+</div>
+<script>
+    const infoModal = ({ time = 3000, message, icons = "fa-solid fa-check fa-beat-fade", color = "#63E6BE" }) => {
+        return new Promise((resolve) => {
+            try {
+                const infoIcon = document.getElementById("info-icon")
+                const infoMessage = document.getElementById("info-message")
+                const infoContainer = document.getElementById("info-container")
+                infoIcon.className = icons
+                infoIcon.style.color = color
+                infoMessage.innerHTML = message
+                if (!infoContainer.classList.contains("show")) {
+                    infoContainer.classList.add("show")
+                }
+                setTimeout(() => {
+                    infoContainer.classList.remove("show")
+                    setTimeout(() => {
+                        infoMessage.innerHTML = ""
+                    }, 500);
+                    resolve()
+                }, time);
+            } catch (error) {
+                console.log("- There is no way this is error right ? just in case : ", error)
+            }
+        })
+    }
+</script>

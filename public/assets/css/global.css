@@ -1,0 +1,48 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+.dark-mode {
+  color: #f0f0f0;
+  background-color: #000000;
+  background-image: url('/assets/backgrounds/dark_1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: 1s;
+}
+
+.light-mode {
+  background-color: #f0f0f0;
+  color: #000000;
+  background-image: url('/assets/backgrounds/light_1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: 1s;
+}
+
+
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(70, 251, 223, 0.7);
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
