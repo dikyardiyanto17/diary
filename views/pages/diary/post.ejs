@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow: hidden;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../../partials/global.ejs') %>
+        <link rel="stylesheet" href="<%= baseUrl %>/assets/css/diary.css">
+        <title>
+            <%= appName %>
+        </title>
+</head>
+
+<body>
+    <%- include('../../partials/header.ejs') %>
+        <%- include('../../partials/info.ejs') %>
+            <form class="container-create">
+                <section class="preview-container" id="preview-container">
+                    <div class="preview-content" id="preview-content"></div>
+                </section>
+                <div class="button-container">
+                    <button type="submit" class="btn">Create</button>
+                    <button type="button" class="btn" id="preview-button">Preview</button>
+                </div>
+                <input type="text" name="title" placeholder="Title..." class="diary-input" style="width: 200px;" />
+                <input type="text" name="shortDescription" placeholder="Short Description..." class="diary-input" />
+                <div class="toggle-wrapper-input" style="margin-bottom: 10px;">
+                    <label class="toggle-label-input">
+                        <input type="checkbox" name="private" id="private-toogle" />
+                        <span class="slider-input"></span>
+                        <span class="label-text">Privacy</span>
+                    </label>
+                </div>
+                <div id="summernote"></div>
+            </form>
+            <%- include('../../partials/global_script.ejs', { baseUrl }) %>
+                <script src="<%= baseUrl %>/scripts/diary_post.js"></script>
+</body>
+
+</html>

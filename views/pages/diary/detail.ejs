@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow: hidden;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../../partials/global.ejs') %>
+        <link rel="stylesheet" href="<%= baseUrl %>/assets/css/diary.css">
+        <title>
+            <%= appName %>
+        </title>
+</head>
+
+<body>
+    <%- include('../../partials/header.ejs') %>
+        <%- include('../../partials/info.ejs') %>
+            <div class="container">
+                <div class="comment-wrapper">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="comment-toogle">
+                        Show Comment
+                    </label>
+                </div>
+                <section class="diaries-container">
+                    <% if (canUpdate){%>
+                        <div class="add-diary">
+                            <button class="btn" onclick="deleteData('<%= diaryid %>', 'diary')">Delete Diary</button>
+                            <div class="toggle-wrapper-input">
+                                <label class="toggle-label-input">
+                                    <input type="checkbox" name="private" id="privateToggle"
+                                        oninput="updatePrivacy(this, '<%= diaryid %>', 'diary')" <%= private ? "checked"
+                                        : "" %>
+                                    />
+
+
+                                    <span class="slider-input"></span>
+                                    <span class="label-text">Private</span>
+                                </label>
+                            </div>
+                        </div>
+                        <%}%>
+                            <div class="header-diary">
+                                <div class="avatar" style="cursor: pointer;"
+                                    onclick="window.location.href='<%= baseUrl %>/series/<%= userId %>'">
+                                    <span>
+                                        <%= (petname || "??" ) .split(" ").map(w => w[0]).join("").toUpperCase().substring(0, 2) %>
+                            </span>
+                        </div>
+                        <p style=" font-size: 20px; font-weight: bold; cursor: pointer;">
+                                            <%= petname %>
+                                                </p>
+                                                <p>
+                                                    <%= new Date(rawData[0]?.createdAt).toLocaleDateString('id-ID', {
+                                                        year: 'numeric' , month: 'long' , day: 'numeric' }) %>
+                                                </p>
+                                </div>
+                                <%- rawData[0]?.content %>
+                </section>
+
+
+                <section class="comment-container" id="comment-container">
+                    <form method="POST" data-relatedtype="Diary">
+                        <div class="comment-content">
+                            <textarea name="comment" placeholder="Write a comment..." class="comment-input"></textarea>
+                            <button type="submit" class="btn">Comment</button>
+                        </div>
+                    </form>
+                    <% comments.forEach(function(comment) { %>
+                        <div class="comment-box" id="cid_<%=comment._id%>">
+                            <div class="avatar">
+                                <span>
+                                    <%= (comment.petname || "??" ) .split(" ").map(w => w[0]).join("").toUpperCase().substring(0, 2) %>
+                                </span>
+                            </div>
+                            <div class=" comment-content">
+                                        <div class="comment-header">
+                                            <strong>
+                                                <%= comment.petname %>
+                                            </strong>
+                                            <span class="timestamp" data-time="<%= comment.createdAt %>"></span>
+                                            <% if (comment.userId==user?.id) { %>
+                                                <form onsubmit="deleteComment(event, '<%= comment._id %>', 'Series')">
+                                                    <button type="submit" class="delete-btn">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                <% } %>
+
+                                        </div>
+                                        <p>
+                                            <%= comment.comment %>
+                                        </p>
+                            </div>
+                        </div>
+                        <% }) %>
+                </section>
+
+            </div>
+            <%- include('../../partials/global_script.ejs', { baseUrl }) %>
+                <script src="<%= baseUrl %>/scripts/comment.js"></script>
+                <script src="<%= baseUrl %>/scripts/series.js"></script>
+</body>
+
+</html>

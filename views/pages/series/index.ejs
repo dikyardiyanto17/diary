@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../../partials/global.ejs') %>
-        <link rel="stylesheet" href="/assets/css/series.css">
+        <link rel="stylesheet" href="<%= baseUrl %>/assets/css/series.css">
         <title>
             <%= appName %>
         </title>
@@ -20,31 +20,50 @@
                         <% if (canPost) {%>
                             <%- include('./post.ejs') %>
                                 <% } %>
-                                    <h1>- Series of kopet -</h1>
+                                    <h1>- Series of <%= petname %> -</h1>
                     </div>
                     <div class="series-container">
-                        <% for (let i=0; i < 30; i++){ %>
-                            <div class="card-container">
-                                <div class="series-title-container"><i class="fa fa-user fa-xs"></i><span>Users</span>
-                                </div>
-                                <div class="series-card">
-                                    <div class="series-title">
-                                        <i class="fa fa-book fa-xs"></i><span>WHY</span>
-                                    </div>
-                                    <div class="series-info">
-                                        <span><i class="fa fa-heart fa-xs"></i>2 Likes</span>
-                                        <br>
-                                        <span><i class="fa fa-comment fa-xs"></i>2 Comments</span>
-                                        <br>
-                                        <span><i class="fa fa-eye fa-xs"></i>2 View</span>
-                                    </div>
-                                    <div class="series-description">
-
-                                        <span><i class="fa fa-note-sticky"></i>WHYWHYWHYWHY WHYWHYWHYWHY</span>
-                                    </div>
-                                </div>
-                            </div>
+                        <% if (rawData.length==0) {%>
+                            <h1>You dont have any series, create series and share your story...</h1>
                             <% } %>
+                                <% rawData.forEach(x=> { %>
+                                    <div class="card-container">
+                                        <a class="series-title-container" href="<%= baseUrl %>/series/<%= x.userId%>">
+                                            <i class="fa fa-user fa-xs"></i><span>
+                                                <%= x.petname %>
+                                            </span>
+                                        </a>
+                                        <div class="series-card"
+                                            onclick="window.location.href='<%= baseUrl %>/diary/<%= x._id %>'"
+                                            style="cursor: pointer;">
+                                            <div class="series-title">
+                                                <% if (x.private){ %>
+                                                <i class="fa fa-lock fa-xs"></i>
+                                                <% }%>
+                                                <i class="fa fa-book fa-xs"></i>
+                                                <span>
+                                                    <%= x.title %>
+                                                </span>
+                                            </div>
+                                            <div class="series-info">
+                                                <span><i class="fa fa-heart fa-xs"></i>
+                                                    <%= x.totalLikes %> Likes
+                                                </span>
+                                                <br>
+                                                <span><i class="fa fa-comment fa-xs"></i>
+                                                    <%= x.totalComments || 0 %> Comments
+                                                </span>
+                                                <br>
+                                            </div>
+                                            <div class="series-description">
+                                                <span><i class="fa fa-note-sticky"></i>
+                                                    <%= x.description %>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <% }) %>
                     </div>
                 </section>
             </div>

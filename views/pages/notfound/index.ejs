@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../../partials/global.ejs') %>
+        <title>404 Not Found</title>
+        <style>
+
+            .container {
+                text-align: center;
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+        </style>
+</head>
+
+<body>
+    <%- include('../../partials/header.ejs') %>
+        <%- include('../../partials/info.ejs') %>
+            <div class="container">
+                <h1>404</h1>
+                <p>Oops! The page you're looking for doesn't exist.</p>
+                <a href="/">Go Home</a>
+            </div>
+            <%- include('../../partials/global_script.ejs', { baseUrl }) %>
+</body>
+
+</html>

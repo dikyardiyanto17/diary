@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/assets/css/header.css">
+<link rel="stylesheet" href="<%= baseUrl %>/assets/css/header.css">
 
 <nav class="navbar">
   <a href="/" class="brand">
@@ -14,17 +14,17 @@
     </label>
 
     <% if (user) { %>
-      <a href="/series/<%= user.id %>" class="avatar">
+      <a href="<%= baseUrl %>/series/<%= user.id %>" class="avatar">
         <%= user.initial %>
       </a>
-      <a href="/series/<%= user.id %>" class="greeting">Hello, <%= user.petname || user.username %>
+      <a href="<%= baseUrl %>/series/<%= user.id %>" class="greeting">Hello, <%= user.petname || user.username %>
       </a>
-      <form action="/api/auth/logout" method="POST" style="display:inline;">
+      <form action="<%= baseUrl %>/api/auth/logout" method="POST" style="display:inline;">
         <button type="submit" class="btn">Logout</button>
       </form>
       <% } else { %>
-        <a href="/login" class="btn">Login</a>
-        <a href="/signup" class="btn">Sign Up</a>
+        <a href="<%= baseUrl %>/login" class="btn">Login</a>
+        <a href="<%= baseUrl %>/signup" class="btn">Sign Up</a>
         <% } %>
   </div>
 </nav>

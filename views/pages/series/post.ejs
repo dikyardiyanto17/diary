@@ -21,7 +21,7 @@
         display: flex;
     }
 
-    .modal-content {
+    .dark-mode .modal-content {
         padding: 2rem;
         border-radius: 8px;
         width: 90%;
@@ -31,6 +31,22 @@
         border-radius: 10px;
         color: #f0f0f0;
         box-shadow: 0 4px 12px rgb(255, 255, 255);
+        padding: 20px 10px 10px 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transform-style: preserve-3d;
+        transition: 1s;
+    }
+
+    .light-mode .modal-content {
+        padding: 2rem;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        background-color: #e9e9e989;
+        border-radius: 10px;
+        color: #f0f0f0;
+        box-shadow: 0 4px 12px rgb(0, 0, 0);
         padding: 20px 10px 10px 10px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         transform-style: preserve-3d;
@@ -51,6 +67,7 @@
     }
 
     .light-mode .post-header {
+        color: #000000;
         position: absolute;
         top: -15px;
         left: 20px;
@@ -216,7 +233,7 @@
                 <label class="toggle-label-input">
                     <input type="checkbox" name="private" id="privateToggle" />
                     <span class="slider-input"></span>
-                    <span class="label-text">Private</span>
+                    <span class="label-text">Privacy</span>
                 </label>
             </div>
 
@@ -271,7 +288,7 @@
             const result = await response.json()
             if (response.ok) {
                 await infoModal({ time: 3000, message: result.message, icons: "fa-solid fa-check fa-beat-fade", color: "#63E6BE" })
-                form.reset();
+                await form.reset();
                 window.location.reload()
             } else {
                 throw { message: result.message }

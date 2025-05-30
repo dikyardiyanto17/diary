@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../../partials/global.ejs') %>
-        <link rel="stylesheet" href="/assets/css/login.css">
+        <link rel="stylesheet" href="<%= baseUrl %>/assets/css/login.css">
         <title>
             <%= appName %>
         </title>
@@ -27,7 +27,7 @@
                 </form>
             </div>
             <%- include('../../partials/global_script.ejs', { baseUrl }) %>
-                <script src="/scripts/login.js"></script>
+                <script src="<%= baseUrl %>/scripts/login.js"></script>
 </body>
 
 </html>

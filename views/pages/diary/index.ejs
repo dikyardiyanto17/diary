@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow: hidden;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../../partials/global.ejs') %>
+        <link rel="stylesheet" href="<%= baseUrl %>/assets/css/diary.css">
+        <title>
+            <%= appName %>
+        </title>
+</head>
+
+<body>
+    <%- include('../../partials/header.ejs') %>
+        <%- include('../../partials/info.ejs') %>
+            <div class="container">
+                <div class="comment-wrapper">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="comment-toogle">
+                        Show Comment
+                    </label>
+                </div>
+                <section class="diaries-container">
+                    <% if (canPost){%>
+                        <div class="add-diary">
+                            <a href="<%= baseUrl%>/diary/create/<%= seriesid%>">
+                                <button class="btn">
+                                    Add Diary
+                                </button>
+                            </a>
+                            <button class="btn" onclick="deleteData('<%= seriesid %>', 'series')">Delete Series</button>
+                            <div class="toggle-wrapper-input">
+                                <label class="toggle-label-input">
+                                    <input type="checkbox" name="private" id="privateToggle"
+                                        oninput="updatePrivacy(this, '<%= seriesid %>', 'series')" <%=private ? "checked" : "" %>
+                                    />
+
+
+                                    <span class="slider-input"></span>
+                                    <span class="label-text">Privacy</span>
+                                </label>
+                            </div>
+                        </div>
+                        <%}%>
+                            <% if (rawData.length==0) {%>
+                                <% if (canPost){%>
+                                    <h1>Your series dont have diary yet, create your first diary in this series...</h1>
+                                    <% } else { %>
+                                        <h1>This series dont have any dairy yet...</h1>
+                                        <% } %>
+                                            <% } %>
+                                                <% rawData.forEach(function(x) { %>
+                                                    <div class="diary-card" id="diary-card"
+                                                        onclick="window.location.href='<%= baseUrl %>/diary/detail/<%= x._id %>'">
+                                                        <div class="diary-header">
+                                                            <i class="fa fa-user"></i>
+                                                            <p style="font-weight: bold;">
+                                                                <%= petname %>
+                                                            </p>
+                                                            <p>
+                                                                <%= new Date(x.createdAt).toLocaleDateString('id-ID', {
+                                                                    year: 'numeric' , month: 'long' , day: 'numeric' })
+                                                                    %>
+                                                            </p>
+
+                                                        </div>
+                                                        <div class="diary-content">
+                                                            <div class="diary-picture">
+                                                                <img src="<%= x.image %>" alt="">
+                                                            </div>
+                                                            <div class="diary-description">
+                                                                <p style="font-weight: bold;">
+                                                                    <%= x.title %>
+                                                                </p>
+                                                                <span>
+                                                                    <%= x.description %>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="diary-footer">
+                                                            <button class="like-btn" title="Like"
+                                                                data-diaryid="<%= x._id %>"
+                                                                onclick="event.stopPropagation();">
+                                                                <% const liked=x.likes.some(like=> like.userId ===
+                                                                    user?.id); %>
+                                                                    <p>
+                                                                        <%= x.likes.length %>
+                                                                    </p>
+                                                                    <i
+                                                                        class="<%= liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart' %>"></i>
+                                                            </button>
+
+                                                            <button class="share-btn" title="Comment">
+                                                                <%= x.totalComments %><i
+                                                                        class="fa-solid fa-comment"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <% }); %>
+
+                </section>
+
+                <section class="comment-container" id="comment-container">
+                    <form method="POST" data-relatedtype="Series">
+                        <div class="comment-content">
+                            <textarea name="comment" placeholder="Write a comment..." class="comment-input"></textarea>
+                            <button type="submit" class="btn">Comment</button>
+                        </div>
+                    </form>
+                    <% comments.forEach(function(comment) { %>
+                        <div class="comment-box" id="cid_<%=comment._id%>">
+                            <div class="avatar">
+                                <span>
+                                    <%= (comment.petname || "??" ) .split(" ").map(w => w[0]).join("").toUpperCase().substring(0, 2) %>
+                                </span>
+                            </div>
+                            <div class=" comment-content">
+                                        <div class="comment-header">
+                                            <strong>
+                                                <%= comment.petname %>
+                                            </strong>
+                                            <span class="timestamp" data-time="<%= comment.createdAt %>"></span>
+                                            <% if (comment.userId==user?.id) { %>
+                                                <form onsubmit="deleteComment(event, '<%= comment._id %>', 'Series')">
+                                                    <button type="submit" class="delete-btn">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                <% } %>
+
+                                        </div>
+                                        <p>
+                                            <%= comment.comment %>
+                                        </p>
+                            </div>
+                        </div>
+                        <% }) %>
+
+                </section>
+
+            </div>
+            <%- include('../../partials/global_script.ejs', { baseUrl }) %>
+                <script src="<%= baseUrl %>/scripts/diary_like.js"></script>
+                <script src="<%= baseUrl %>/scripts/comment.js"></script>
+                <script src="<%= baseUrl %>/scripts/series.js"></script>
+</body>
+
+</html>

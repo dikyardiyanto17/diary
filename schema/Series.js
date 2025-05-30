@@ -22,21 +22,11 @@ const seriesSchema = new Schema(
 			required: [true, "Description is required"],
 			maxlength: [50, "Description cannot exceed 50 characters"],
 		},
-		diaries: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: "Diary",
-			},
-		],
 		likes: [
 			{
 				userId: String,
 			},
 		],
-		views: {
-			type: Number,
-			default: 0,
-		},
 		private: {
 			type: Boolean,
 			default: false,

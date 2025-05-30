@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const result = await response.json()
 
 			if (response.ok) {
-				await infoModal({ time: 5000, message: result.message, icons: "fa-solid fa-check fa-beat-fade", color: "#63E6BE" })
+				await infoModal({ time: 3000, message: result.message, icons: "fa-solid fa-check fa-beat-fade", color: "#63E6BE" })
 				window.location.href = `${baseUrl}/`
 			} else {
 				throw { message: result.message }

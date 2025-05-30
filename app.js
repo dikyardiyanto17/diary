@@ -24,7 +24,7 @@ app.use(express.static("public"))
 app.use(express.static(path.join(__dirname, "public")))
 
 const sessionMiddleware = session({
-	secret: process.env.EXPRESS_SESSION_SECRET || "22DIARY@2025",
+	secret: process.env.EXPRESS_SESSION_SECRET,
 	...expressSessionConfiguration,
 })
 app.use(sessionMiddleware)
